@@ -1,0 +1,55 @@
+{
+	"name": "logxr",
+	"version": "0.1.0",
+	"description": "Game-Loop-Based Gamepad API Wrapper",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsc",
+		"format": "prettier --write ./src/**/*",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"pre-commit": [
+		"build"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/felixtrz/logxr.git"
+	},
+	"keywords": [
+		"game",
+		"html5",
+		"threejs",
+		"webxr",
+		"webvr",
+		"console",
+		"log",
+		"error",
+		"warn",
+		"info",
+		"debug",
+		"devtool",
+		"devtools"
+	],
+	"author": "Felix Zhang <felixtrz96@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/felixtrz/logxr/issues"
+	},
+	"homepage": "https://github.com/felixtrz/logxr#readme",
+	"devDependencies": {
+		"@types/node": "^18.7.13",
+		"@types/three": "^0.149.0",
+		"eslint": "^8.23.0",
+		"eslint-config-prettier": "^8.5.0",
+		"pre-commit": "^1.2.2",
+		"prettier": "^2.7.1",
+		"typescript": "^4.8.2"
+	},
+	"peerDependencies": {
+		"three": "^0.149.0"
+	}
+}
