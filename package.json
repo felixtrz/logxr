@@ -1,7 +1,7 @@
 {
 	"name": "logxr",
 	"version": "0.1.0",
-	"description": "Game-Loop-Based Gamepad API Wrapper",
+	"description": "WebXR in-session console",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"files": [
@@ -10,11 +10,9 @@
 	"scripts": {
 		"build": "tsc",
 		"format": "prettier --write ./src/**/*",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"prepublishOnly": "npm run build"
 	},
-	"pre-commit": [
-		"build"
-	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/felixtrz/logxr.git"
@@ -45,11 +43,13 @@
 		"@types/three": "^0.149.0",
 		"eslint": "^8.23.0",
 		"eslint-config-prettier": "^8.5.0",
-		"pre-commit": "^1.2.2",
 		"prettier": "^2.7.1",
 		"typescript": "^4.8.2"
 	},
 	"peerDependencies": {
 		"three": "^0.149.0"
+	},
+	"dependencies": {
+		"word-wrap": "^1.2.3"
 	}
 }
