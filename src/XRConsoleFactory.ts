@@ -53,7 +53,7 @@ export class XRConsoleFactory {
 		return this._instance;
 	}
 
-	public createLogger(options: XRConsoleOptions): XRConsole {
+	public createConsole(options: XRConsoleOptions): XRConsole {
 		const consoleInstance = new XRConsole(options);
 		this._consoleInstances.push(consoleInstance);
 		return consoleInstance;
