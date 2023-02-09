@@ -44,6 +44,15 @@ export class XRConsoleFactory {
 				consoleInstance.needsUpdate = true;
 			});
 		};
+
+		const clear = console.clear.bind(console);
+		console.clear = () => {
+			this._messageQueue = [];
+			clear();
+			this._consoleInstances.forEach((consoleInstance) => {
+				consoleInstance.needsUpdate = true;
+			});
+		};
 	}
 
 	public static getInstance(): XRConsoleFactory {

@@ -8,7 +8,7 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "tsc",
+		"build": "tsc && cd example && npm run build",
 		"format": "prettier --write ./src/**/*",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"prepublishOnly": "npm run build"
