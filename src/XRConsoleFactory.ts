@@ -45,6 +45,26 @@ export class XRConsoleFactory {
 			});
 		};
 
+		const info = console.info.bind(console);
+		console.info = (...args) => {
+			const message = buildMessage(MessageType.Info, ...args);
+			this._messageQueue.unshift(message);
+			info(...args);
+			this._consoleInstances.forEach((consoleInstance) => {
+				consoleInstance.needsUpdate = true;
+			});
+		};
+
+		const debug = console.debug.bind(console);
+		console.debug = (...args) => {
+			const message = buildMessage(MessageType.Debug, ...args);
+			this._messageQueue.unshift(message);
+			debug(...args);
+			this._consoleInstances.forEach((consoleInstance) => {
+				consoleInstance.needsUpdate = true;
+			});
+		};
+
 		const clear = console.clear.bind(console);
 		console.clear = () => {
 			this._messageQueue = [];

@@ -16,7 +16,9 @@ var MessageType;
     MessageType[MessageType["Log"] = 1] = "Log";
     MessageType[MessageType["Error"] = 2] = "Error";
     MessageType[MessageType["Warning"] = 3] = "Warning";
-    MessageType[MessageType["All"] = 4] = "All";
+    MessageType[MessageType["Info"] = 4] = "Info";
+    MessageType[MessageType["Debug"] = 5] = "Debug";
+    MessageType[MessageType["All"] = 6] = "All";
 })(MessageType = exports.MessageType || (exports.MessageType = {}));
 //# sourceMappingURL=Message.js.map
 
@@ -53,6 +55,8 @@ const DEFAULT_OPTIONS = {
     logColor: '#FFFFFF',
     errorColor: '#D0342C',
     warningColor: '#FF7900',
+    infoColor: '#76B947',
+    debugColor: '#0E86D4',
 };
 class XRConsole extends three_1.Object3D {
     _canvas;
@@ -78,6 +82,8 @@ class XRConsole extends three_1.Object3D {
             logColor: options.logColor ?? DEFAULT_OPTIONS.logColor,
             errorColor: options.errorColor ?? DEFAULT_OPTIONS.errorColor,
             warningColor: options.warningColor ?? DEFAULT_OPTIONS.warningColor,
+            infoColor: options.infoColor ?? DEFAULT_OPTIONS.infoColor,
+            debugColor: options.debugColor ?? DEFAULT_OPTIONS.debugColor,
         };
         this._canvas = document.createElement('canvas');
         this._canvas.width = this._options.pixelWidth;
@@ -134,6 +140,10 @@ class XRConsole extends three_1.Object3D {
                 return this._options.errorColor;
             case Message_1.MessageType.Warning:
                 return this._options.warningColor;
+            case Message_1.MessageType.Info:
+                return this._options.infoColor;
+            case Message_1.MessageType.Debug:
+                return this._options.debugColor;
         }
         throw new Error('Invalid message type');
     }
@@ -268,6 +278,24 @@ class XRConsoleFactory {
             const message = buildMessage(Message_1.MessageType.Warning, ...args);
             this._messageQueue.unshift(message);
             warn(...args);
+            this._consoleInstances.forEach((consoleInstance) => {
+                consoleInstance.needsUpdate = true;
+            });
+        };
+        const info = console.info.bind(console);
+        console.info = (...args) => {
+            const message = buildMessage(Message_1.MessageType.Info, ...args);
+            this._messageQueue.unshift(message);
+            info(...args);
+            this._consoleInstances.forEach((consoleInstance) => {
+                consoleInstance.needsUpdate = true;
+            });
+        };
+        const debug = console.debug.bind(console);
+        console.debug = (...args) => {
+            const message = buildMessage(Message_1.MessageType.Debug, ...args);
+            this._messageQueue.unshift(message);
+            debug(...args);
             this._consoleInstances.forEach((consoleInstance) => {
                 consoleInstance.needsUpdate = true;
             });
@@ -108668,6 +108696,8 @@ function setupXRConsole(controller) {
 	console.log('This is what console.log looks like');
 	console.warn('This is what console.warn looks like');
 	console.error('This is what console.error looks like');
+	console.info('This is what console.info looks like');
+	console.debug('This is what console.debug looks like');
 	console.log(
 		'You can press trigger to log something, or press the grip button to clear the console',
 	);

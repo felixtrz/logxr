@@ -83,6 +83,8 @@ function setupXRConsole(controller) {
 	console.log('This is what console.log looks like');
 	console.warn('This is what console.warn looks like');
 	console.error('This is what console.error looks like');
+	console.info('This is what console.info looks like');
+	console.debug('This is what console.debug looks like');
 	console.log(
 		'You can press trigger to log something, or press the grip button to clear the console',
 	);

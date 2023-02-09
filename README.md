@@ -5,13 +5,20 @@
 [![npm download](https://badgen.net/npm/dw/logxr)](https://www.npmjs.com/package/logxr)
 [![license](https://badgen.net/github/license/felixtrz/logxr)](/LICENSE.md)
 
-LogXR is a debugging utility that makes it easy to view console logs in WebXR experiences. It provides developers with a simple, straightforward way to debug and troubleshoot their WebXR applications, giving them clarity and insight into the console output. Currently, LogXR only supports Three.js, but support for Babylon.js will be added in the near future.
+A debugging utility that makes it easy to view console logs in WebXR experiences. LogXR provides developers with a simple and straightforward way to debug and troubleshoot their WebXR applications, giving them clarity and insight into the console output. The library is designed to be lightweight and versatile, offering a wide range of customization options for the appearance and behavior of the XR console. Currently, LogXR only supports Three.js, with support for Babylon.js coming soon.
 
-## Benefits
+## Features
 
-- **Effortless debugging**: LogXR makes it easy to debug WebXR experiences, providing clarity and insight into the console output.
-- **Streamlined workflow**: By making it simple to view console logs in your XR environment, LogXR streamlines your development workflow and saves you time.
-- **Better WebXR experiences**: With the ability to easily debug and troubleshoot your WebXR applications, you can build better experiences for your users.
+- 💻 **Familiar API:** No need to learn a new logging API. After setting up LogXR, developers can continue using the familiar `console` API for logging, and their logs will be displayed both in the browser dev console and in the XR console.
+- 💬 **Supports Multiple Console Methods:** LogXR currently supports the following console APIs: `console.log`, `console.warn`, `console.error`, `console.info`, and `console.debug`.
+- 💨 **Lightweight and Versatile:** LogXR's lightweight design and lack of predefined XR interactions for controlling the console make it easy to integrate into any WebXR project. This versatility gives developers complete control over how they configure and use the XR console, making it highly adaptable to their specific needs.
+- 🎨 **Customizable Appearance:** LogXR provides a wide range of options for customizing the appearance and behavior of the XR console, including the ability to set the background color, colors for different types of logging, and the size and resolution of the console panel.
+
+## Demo App
+
+A demo app has been built using Three.js to showcase LogXR in action. You can check out the demo app at https://felixtrz.github.io/logxr/ to see how LogXR works and to get a feel for its capabilities.
+
+This demo app is a great resource for developers who are considering using LogXR in their projects. It provides a hands-on experience with the library, and will give you a better understanding of how it works and what it can do.
 
 ## Installation
 
@@ -111,6 +118,8 @@ The `XRConsoleOptions` interface represents a set of options that can be passed 
 - `logColor?: string`: The color of the log messages. Default is `'#FFFFFF'`.
 - `errorColor?: string`: The color of the error messages. Default is `'#D0342C'`.
 - `warningColor?: string`: The color of the warning messages. Default is `'#FF7900'`.
+- `infoColor?: string`: The color of the info messages. Default is `'#76B947'`.
+- `debugColor?: string`: The color of the debug messages. Default is `'#0E86D4'`.
 
 ## `MessageType`
 
@@ -122,6 +131,8 @@ The `MessageType` enumeration is used to specify the type of messages that shoul
 - `Log`: Displays only log messages.
 - `Error`: Displays only error messages.
 - `Warning`: Displays only warning messages.
+- `Info`: Displays only info messages.
+- `Debug`: Displays only debug messages.
 
 ## License
 

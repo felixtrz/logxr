@@ -8,10 +8,22 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "tsc && cd example && npm run build",
+		"build:src": "tsc",
+		"build:example": "cd example && npm run build",
+		"build": "npm run build:src && npm run build:example",
 		"format": "prettier --write ./src/**/*",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"prepublishOnly": "npm run build"
+		"prepublishOnly": "npm run build",
+		"watch": "npm-watch"
+	},
+	"watch": {
+		"build:src": {
+			"patterns": [
+				"src"
+			],
+			"extensions": "ts",
+			"quiet": false
+		}
 	},
 	"repository": {
 		"type": "git",
@@ -43,6 +55,7 @@
 		"@types/three": "^0.149.0",
 		"eslint": "^8.23.0",
 		"eslint-config-prettier": "^8.5.0",
+		"npm-watch": "^0.11.0",
 		"prettier": "^2.7.1",
 		"typescript": "^4.8.2"
 	},

@@ -78,6 +78,16 @@ export type XRConsoleOptions = {
 	 * @default '#FF7900'
 	 */
 	warningColor?: string;
+	/**
+	 * The color of the info messages.
+	 * @default '#76B947'
+	 */
+	infoColor?: string;
+	/**
+	 * The color of the debug messages.
+	 * @default '#0E86D4'
+	 */
+	debugColor?: string;
 };
 
 const DEFAULT_OPTIONS: XRConsoleOptions = {
@@ -94,6 +104,8 @@ const DEFAULT_OPTIONS: XRConsoleOptions = {
 	logColor: '#FFFFFF',
 	errorColor: '#D0342C',
 	warningColor: '#FF7900',
+	infoColor: '#76B947',
+	debugColor: '#0E86D4',
 };
 
 type Line = {
@@ -130,6 +142,8 @@ export class XRConsole extends Object3D {
 			logColor: options.logColor ?? DEFAULT_OPTIONS.logColor,
 			errorColor: options.errorColor ?? DEFAULT_OPTIONS.errorColor,
 			warningColor: options.warningColor ?? DEFAULT_OPTIONS.warningColor,
+			infoColor: options.infoColor ?? DEFAULT_OPTIONS.infoColor,
+			debugColor: options.debugColor ?? DEFAULT_OPTIONS.debugColor,
 		};
 		this._canvas = document.createElement('canvas');
 		this._canvas.width = this._options.pixelWidth;
@@ -205,6 +219,10 @@ export class XRConsole extends Object3D {
 				return this._options.errorColor;
 			case MessageType.Warning:
 				return this._options.warningColor;
+			case MessageType.Info:
+				return this._options.infoColor;
+			case MessageType.Debug:
+				return this._options.debugColor;
 		}
 		throw new Error('Invalid message type');
 	}
