@@ -116,8 +116,9 @@ type Line = {
 
 export class XRConsole extends Object3D {
 	private _canvas: HTMLCanvasElement;
-	private _plane: Mesh;
 	private _options: XRConsoleOptions;
+
+	public panelMesh: Mesh;
 	/**
 	 * flag to indicate that the console canvas needs to be updated
 	 */
@@ -149,7 +150,7 @@ export class XRConsole extends Object3D {
 		this._canvas.width = this._options.pixelWidth;
 		this._canvas.height = this._options.pixelHeight;
 
-		this._plane = new Mesh(
+		this.panelMesh = new Mesh(
 			new PlaneGeometry(options.actualWidth, options.actualHeight),
 			new MeshBasicMaterial({
 				side: DoubleSide,
@@ -157,7 +158,7 @@ export class XRConsole extends Object3D {
 			}),
 		);
 
-		this.add(this._plane);
+		this.add(this.panelMesh);
 	}
 
 	get innerHeight() {
@@ -195,8 +196,8 @@ export class XRConsole extends Object3D {
 		const lines = this._generateLines(messages, numCharsPerLine);
 		this._renderLines(lines, lineHeight, textMetrics.width, context);
 
-		(this._plane.material as MeshBasicMaterial).map.dispose();
-		(this._plane.material as MeshBasicMaterial).map = new CanvasTexture(
+		(this.panelMesh.material as MeshBasicMaterial).map.dispose();
+		(this.panelMesh.material as MeshBasicMaterial).map = new CanvasTexture(
 			this._canvas,
 		);
 

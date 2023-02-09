@@ -60,8 +60,8 @@ const DEFAULT_OPTIONS = {
 };
 class XRConsole extends three_1.Object3D {
     _canvas;
-    _plane;
     _options;
+    panelMesh;
     /**
      * flag to indicate that the console canvas needs to be updated
      */
@@ -88,11 +88,11 @@ class XRConsole extends three_1.Object3D {
         this._canvas = document.createElement('canvas');
         this._canvas.width = this._options.pixelWidth;
         this._canvas.height = this._options.pixelHeight;
-        this._plane = new three_1.Mesh(new three_1.PlaneGeometry(options.actualWidth, options.actualHeight), new three_1.MeshBasicMaterial({
+        this.panelMesh = new three_1.Mesh(new three_1.PlaneGeometry(options.actualWidth, options.actualHeight), new three_1.MeshBasicMaterial({
             side: three_1.DoubleSide,
             map: new three_1.CanvasTexture(this._canvas),
         }));
-        this.add(this._plane);
+        this.add(this.panelMesh);
     }
     get innerHeight() {
         return this._options.pixelHeight - this._options.verticalPadding * 2;
@@ -120,8 +120,8 @@ class XRConsole extends three_1.Object3D {
         const messages = XRConsoleFactory_1.XRConsoleFactory.getInstance().getMessages(this._options.messageType, numLines);
         const lines = this._generateLines(messages, numCharsPerLine);
         this._renderLines(lines, lineHeight, textMetrics.width, context);
-        this._plane.material.map.dispose();
-        this._plane.material.map = new three_1.CanvasTexture(this._canvas);
+        this.panelMesh.material.map.dispose();
+        this.panelMesh.material.map = new three_1.CanvasTexture(this._canvas);
         this.needsUpdate = false;
     }
     /**

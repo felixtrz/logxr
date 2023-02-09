@@ -59,31 +59,52 @@ The xrConsole object created extends [THREE.Object3D](https://threejs.org/docs/#
 
 The following classes are exported by LogXR, and are available for use in your WebXR projects:
 
-## `XRConsoleFactory`
+## XRConsoleFactory
 
-The `XRConsoleFactory` class is a singleton factory that is used to create instances of the XR console.
+The XRConsoleFactory class provides a factory method to create instances of XRConsole, and manage the message queue that all instances of XRConsole read from.
 
-### `getInstance()`
+### `static getInstance(): XRConsoleFactory`
 
 ```js
 static getInstance(): XRConsoleFactory
 ```
 
-Returns the singleton instance of the `XRConsoleFactory`.
+Gets a singleton instance of the XRConsoleFactory.
 
-### `createLogger(options: XRConsoleOptions)`
+### `createConsole(options: XRConsoleOptions): XRConsole`
 
 ```js
-createLogger(options: XRConsoleOptions): XRConsole
+createConsole(options: XRConsoleOptions): XRConsole
 ```
 
-Creates a new instance of the XR console with the specified options.
+Creates a new instance of XRConsole with the specified options.
 
-## `XRConsole`
+### `getMessages(messageTypes: MessageType[], count: number): Message[]`
 
-The `XRConsole` class represents the XR console, and provides the necessary functionality for rendering console logs in a WebXR environment.
+```js
+getMessages(messageTypes: MessageType[], count: number): Message[]
 
-### `constructor(options?: XRConsoleOptions)`
+```
+
+Gets the messages in the message queue that match the specified message types. The number of messages returned is limited by the `count` parameter.
+
+## XRConsole
+
+The `XRConsole` class represents the XR console and provides the necessary functionality for rendering console logs in a WebXR environment.
+
+### Properties
+
+#### `panelMesh: Mesh`
+
+The `panelMesh` property represents the mesh object that serves as the panel for the console.
+
+#### `needsUpdate: boolean`
+
+The `needsUpdate` property is a flag that indicates whether the console canvas needs to be updated.
+
+### Methods
+
+#### `constructor(options?: XRConsoleOptions)`
 
 ```js
 constructor(options?: XRConsoleOptions)
@@ -91,7 +112,7 @@ constructor(options?: XRConsoleOptions)
 
 Creates a new instance of the XR console with the specified options.
 
-### `render()`
+#### `render()`
 
 ```js
 render(): void
