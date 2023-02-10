@@ -7,6 +7,8 @@
 
 A debugging utility that makes it easy to view console logs in WebXR experiences. LogXR provides developers with a simple and straightforward way to debug and troubleshoot their WebXR applications, giving them clarity and insight into the console output. The library is designed to be lightweight and versatile, offering a wide range of customization options for the appearance and behavior of the XR console. Currently, LogXR only supports Three.js, with support for Babylon.js coming soon.
 
+![](example/logxr.gif)
+
 ## Features
 
 - 💻 **Familiar API:** No need to learn a new logging API. After setting up LogXR, developers can continue using the familiar `console` API for logging, and their logs will be displayed both in the browser dev console and in the XR console.
