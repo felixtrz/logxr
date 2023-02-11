@@ -44,6 +44,8 @@ Using LogXR is simple. First, import the package in your WebXR project:
 import { XRConsoleFactory } from 'logxr';
 ```
 
+> **_NOTE:_** LogXR requires Three.js as a peer dependency, make sure to have a recent version installed. Babylon.js support is coming soon! 🚀
+
 Then, create an instance of the XR console:
 
 ```js
@@ -65,7 +67,19 @@ The following classes are exported by LogXR, and are available for use in your W
 
 The XRConsoleFactory class provides a factory method to create instances of XRConsole, and manage the message queue that all instances of XRConsole read from.
 
-### `static getInstance(): XRConsoleFactory`
+### Properties
+
+#### `maxNumMessages`
+
+```js
+maxNumMessages: number;
+```
+
+Gets or sets the maximum number of messages that can be stored by the `XRConsoleFactory`. The default value is 100.
+
+### Methods
+
+#### `static getInstance(): XRConsoleFactory`
 
 ```js
 static getInstance(): XRConsoleFactory
@@ -73,7 +87,7 @@ static getInstance(): XRConsoleFactory
 
 Gets a singleton instance of the XRConsoleFactory.
 
-### `createConsole(options: XRConsoleOptions): XRConsole`
+#### `createConsole(options: XRConsoleOptions): XRConsole`
 
 ```js
 createConsole(options: XRConsoleOptions): XRConsole
@@ -81,7 +95,7 @@ createConsole(options: XRConsoleOptions): XRConsole
 
 Creates a new instance of XRConsole with the specified options.
 
-### `getMessages(messageTypes: MessageType[], count: number): Message[]`
+#### `getMessages(messageTypes: MessageType[], count: number): Message[]`
 
 ```js
 getMessages(messageTypes: MessageType[], count: number): Message[]
